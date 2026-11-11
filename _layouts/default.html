@@ -21,8 +21,7 @@
   </header>
 
   <div class="notice">
-    Detta är ett arkiv av modellsegelflyg.se (2005–2026). Aktuell information om tävlingar och klasser finns hos
-    <a href="https://www.modellflygforbund.se/grenar/modellflyg/SMFF/tavlingar--rekord/tavlingsklasser">SMFF</a>.
+    Detta är ett arkiv av modellsegelflyg.se (2005–2026).
   </div>
 
   {%- assign has_sidenav = false -%}
@@ -32,20 +31,6 @@
     <main>
       {{ content }}
     </main>
-    <aside>
-      <h3>Om sajten</h3>
-      <p>modellsegelflyg.se drevs under Sveriges Modellflygförbund (SMFF) för att främja svenskt modellsegelflyg på alla plan – från nybörjare till tävlingsflygare på elitnivå.</p>
-      <h3>Senaste artiklar</h3>
-      <ul>
-        {%- assign latest = site.artiklar | sort: "date" | reverse -%}
-        {%- for a in latest limit: 5 %}<li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>{% endfor -%}
-      </ul>
-      <h3>Senaste album</h3>
-      <ul>
-        {%- assign albums = site.album | sort: "date" | reverse -%}
-        {%- for a in albums limit: 5 %}<li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>{% endfor -%}
-      </ul>
-    </aside>
   </div>
 
   <footer>
