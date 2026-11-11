@@ -1,0 +1,14 @@
+{%- comment -%}Undersidor till include.parent. Grenen som innehåller aktuell sida fälls ut.{%- endcomment -%}
+{%- assign kids = site.sidor | where: "parent", include.parent | sort: "order" -%}
+{%- if kids.size > 0 %}
+<ul>
+  {%- for c in kids %}
+  {%- assign in_branch = false -%}
+  {%- assign prefix = page.url | slice: 0, c.url.size -%}
+  {%- if prefix == c.url -%}{%- assign in_branch = true -%}{%- endif %}
+  <li><a href="{{ c.url | relative_url }}"{% if c.url == page.url %} class="active" aria-current="page"{% endif %}>{{ c.title }}</a>
+    {%- if in_branch -%}{% include sidenav-tree.html parent=c.url %}{%- endif -%}
+  </li>
+  {%- endfor %}
+</ul>
+{%- endif -%}

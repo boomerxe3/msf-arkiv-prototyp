@@ -1,0 +1,9 @@
+{%- comment -%}Vänstermeny för en klass/regelsida: gå upp till toppsidan och lista dess undersidor.{%- endcomment -%}
+{%- assign root = page -%}
+{%- for i in (1..5) -%}
+  {%- if root.parent -%}{%- assign root = site.sidor | where: "url", root.parent | first -%}{%- endif -%}
+{%- endfor -%}
+<nav class="sidenav" aria-label="{{ root.title }}">
+  <a class="sidenav-root{% if root.url == page.url %} active{% endif %}" href="{{ root.url | relative_url }}">{{ root.title }}</a>
+  {% include sidenav-tree.html parent=root.url %}
+</nav>

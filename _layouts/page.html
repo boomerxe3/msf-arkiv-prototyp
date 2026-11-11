@@ -9,14 +9,6 @@ layout: default
   <h1>{{ page.title }}</h1>
   {{ content }}
 
-  {%- assign children = site.sidor | where: "parent", page.url | sort: "order" -%}
-  {%- if children.size > 0 %}
-  <h2>Mer om {{ page.title }}</h2>
-  <ul>
-    {%- for c in children %}<li><a href="{{ c.url | relative_url }}">{{ c.title }}</a></li>{% endfor -%}
-  </ul>
-  {%- endif %}
-
   {%- if page.klass -%}
     {%- assign arts = site.artiklar | where_exp: "a", "a.klasser contains page.klass" | sort: "date" | reverse -%}
     {%- assign news = site.posts | where_exp: "a", "a.klasser contains page.klass" -%}

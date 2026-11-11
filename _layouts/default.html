@@ -25,7 +25,10 @@
     <a href="https://www.modellflygforbund.se/grenar/modellflyg/SMFF/tavlingar--rekord/tavlingsklasser">SMFF</a>.
   </div>
 
-  <div class="layout">
+  {%- assign has_sidenav = false -%}
+  {%- if page.collection == "sidor" -%}{%- assign has_sidenav = true -%}{%- endif %}
+  <div class="layout{% if has_sidenav %} has-sidenav{% endif %}">
+    {%- if has_sidenav %}{% include sidenav.html %}{% endif %}
     <main>
       {{ content }}
     </main>
