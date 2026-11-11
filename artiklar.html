@@ -1,0 +1,14 @@
+---
+layout: default
+title: Artiklar
+permalink: /artiklar/
+---
+<h1>Artiklar</h1>
+{% assign items = site.artiklar | sort: "date" | reverse %}
+{% assign years = items | group_by_exp: "a", "a.date | date: '%Y'" %}
+{% for y in years %}
+<h2>{{ y.name }}</h2>
+<ul class="list">
+  {%- for a in y.items %}<li><a href="{{ a.url | relative_url }}">{{ a.title }}</a>{% if a.author != "" %} <span class="meta">av {{ a.author }}</span>{% endif %}</li>{% endfor -%}
+</ul>
+{% endfor %}

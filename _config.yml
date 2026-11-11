@@ -1,0 +1,39 @@
+title: modellsegelflyg.se
+description: Arkiv för svenskt modellsegelflyg 2005–2026
+lang: sv
+timezone: Europe/Stockholm
+markdown: kramdown
+
+plugins:
+  - jekyll-paginate
+
+# Startsidan visar nyheterna, 5 per sida (samma indelning som gamla sajten)
+paginate: 5
+paginate_path: "/nyheter/sida:num/"
+
+collections:
+  artiklar:
+    output: true
+  album:
+    output: true
+  sidor:
+    output: true
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "", type: artiklar }
+    values: { layout: post }
+  - scope: { path: "", type: album }
+    values: { layout: album }
+  - scope: { path: "", type: sidor }
+    values: { layout: page }
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+
+baseurl: "/msf-arkiv-prototyp"

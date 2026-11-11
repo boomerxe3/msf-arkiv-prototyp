@@ -1,0 +1,13 @@
+---
+layout: default
+title: Alla nyheter
+permalink: /nyheter/
+---
+<h1>Alla nyheter</h1>
+{% assign years = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+{% for y in years %}
+<h2>{{ y.name }}</h2>
+<ul class="list">
+  {%- for p in y.items %}<li><span class="meta">{{ p.date | date: "%m-%d" }}</span> <a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>{% endfor -%}
+</ul>
+{% endfor %}

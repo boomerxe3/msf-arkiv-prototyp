@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="{{ '/' | relative_url }}">modellsegelflyg<span>.se</span></a>
+    <nav class="main-nav">
+      {%- for item in site.data.navigation -%}
+        {%- assign active = false -%}
+        {%- if item.url == '/' -%}{%- if page.url == '/' or page.url contains '/nyheter/' -%}{%- assign active = true -%}{%- endif -%}
+        {%- elsif page.url contains item.url -%}{%- assign active = true -%}{%- endif -%}
+        <a href="{% if item.url contains '://' %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}"{% if active %} class="active"{% endif %}>{{ item.title }}</a>
+      {%- endfor -%}
+    </nav>
+  </header>
+
+  <div class="notice">
+    Detta är ett arkiv av modellsegelflyg.se (2005–2026). Aktuell information om tävlingar och klasser finns hos
+    <a href="https://www.modellflygforbund.se/grenar/modellflyg/SMFF/tavlingar--rekord/tavlingsklasser">SMFF</a>.
+  </div>
+
+  <div class="layout">
+    <main>
+      {{ content }}
+    </main>
+    <aside>
+      <h3>Om sajten</h3>
+      <p>modellsegelflyg.se drevs under Sveriges Modellflygförbund (SMFF) för att främja svenskt modellsegelflyg på alla plan – från nybörjare till tävlingsflygare på elitnivå.</p>
+      <h3>Senaste artiklar</h3>
+      <ul>
+        {%- assign latest = site.artiklar | sort: "date" | reverse -%}
+        {%- for a in latest limit: 5 %}<li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>{% endfor -%}
+      </ul>
+      <h3>Senaste album</h3>
+      <ul>
+        {%- assign albums = site.album | sort: "date" | reverse -%}
+        {%- for a in albums limit: 5 %}<li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>{% endfor -%}
+      </ul>
+    </aside>
+  </div>
+
+  <footer>
+    modellsegelflyg.se · 2005–2026 · <a href="{{ '/nyheter/' | relative_url }}">Alla nyheter</a>
+  </footer>
+</body>
+</html>

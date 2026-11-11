@@ -1,0 +1,4 @@
+<p class="meta">
+  {{ include.item.date | date: "%Y-%m-%d" }}{% if include.item.author and include.item.author != "" %} av {{ include.item.author }}{% endif %}
+  {%- for k in include.item.klasser %} <a class="tag" href="{{ '/' | append: k | downcase | append: '/' | relative_url }}">{{ k }}</a>{% endfor %}
+</p>

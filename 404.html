@@ -1,0 +1,28 @@
+---
+layout: default
+title: Sidan finns inte
+permalink: /404.html
+---
+<h1>Sidan finns inte</h1>
+<p>Sidan du letar efter finns inte i arkivet. Gå till <a href="{{ '/' | relative_url }}">startsidan</a>.</p>
+
+<script>
+  // Gamla adresser (t.ex. /Articles.aspx?pageid=5067) skickas vidare till sina nya platser.
+  (function () {
+    var map = {{ site.data.redirects | jsonify }};
+    var base = {{ site.baseurl | default: "" | jsonify }};
+    var p = location.pathname;
+    if (base && p.indexOf(base) === 0) p = p.slice(base.length);
+    var key = (p.replace(/^\//, '') + location.search).toLowerCase()
+      .replace(/^([a-z\/]+\.aspx)\?.*?\b(pageid=\d+).*$/, '$1?$2');
+    var target = map[key];
+    if (!target) {
+      var m = key.match(/^default\.aspx(?:\?.*?pageindex=(\d+))?/);
+      if (m) target = m[1] && +m[1] > 0 ? '/nyheter/sida' + (+m[1] + 1) + '/' : '/';
+      else if (/^articles\.aspx/.test(key)) target = '/artiklar/';
+      else if (/^gallery\.aspx/.test(key)) target = '/galleri/';
+      else if (/\.aspx/.test(key)) target = '/';
+    }
+    if (target) location.replace(base + target);
+  })();
+</script>

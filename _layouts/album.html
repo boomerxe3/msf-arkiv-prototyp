@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article>
+  <p class="breadcrumb"><a href="{{ '/galleri/' | relative_url }}">« Galleri</a></p>
+  <h1>{{ page.title }}</h1>
+  {% include meta.html item=page %}
+  {{ content }}
+  <div class="grid">
+    {%- for b in page.bilder %}
+    <figure>
+      <a href="{{ b.full | relative_url }}"><img src="{{ b.thumb | relative_url }}" alt="{{ b.caption | default: page.title | escape }}" loading="lazy"></a>
+      {%- if b.caption %}<figcaption>{{ b.caption }}</figcaption>{% endif %}
+    </figure>
+    {%- endfor %}
+  </div>
+</article>

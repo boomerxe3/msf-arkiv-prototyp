@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{% for post in paginator.posts %}
+<article class="news">
+  <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+  {% include meta.html item=post %}
+  {{ post.content }}
+</article>
+{% endfor %}
+
+<nav class="pager">
+  {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">« Nyare</a>{% endif %}
+  <span>Sida {{ paginator.page }} av {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Äldre »</a>{% endif %}
+</nav>

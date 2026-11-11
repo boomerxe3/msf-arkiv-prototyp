@@ -1,0 +1,36 @@
+---
+layout: default
+---
+<article>
+  {%- if page.parent -%}
+    {%- assign parent = site.sidor | where: "url", page.parent | first -%}
+    <p class="breadcrumb"><a href="{{ parent.url | relative_url }}">« {{ parent.title }}</a></p>
+  {%- endif %}
+  <h1>{{ page.title }}</h1>
+  {{ content }}
+
+  {%- assign children = site.sidor | where: "parent", page.url | sort: "order" -%}
+  {%- if children.size > 0 %}
+  <h2>Mer om {{ page.title }}</h2>
+  <ul>
+    {%- for c in children %}<li><a href="{{ c.url | relative_url }}">{{ c.title }}</a></li>{% endfor -%}
+  </ul>
+  {%- endif %}
+
+  {%- if page.klass -%}
+    {%- assign arts = site.artiklar | where_exp: "a", "a.klasser contains page.klass" | sort: "date" | reverse -%}
+    {%- assign news = site.posts | where_exp: "a", "a.klasser contains page.klass" -%}
+    {%- if arts.size > 0 %}
+  <h2>Artiklar om {{ page.klass }}</h2>
+  <ul>
+    {%- for a in arts %}<li><a href="{{ a.url | relative_url }}">{{ a.title }}</a> <span class="meta">{{ a.date | date: "%Y" }}</span></li>{% endfor -%}
+  </ul>
+    {%- endif -%}
+    {%- if news.size > 0 %}
+  <h2>Nyheter om {{ page.klass }}</h2>
+  <ul>
+    {%- for a in news limit: 20 %}<li><a href="{{ a.url | relative_url }}">{{ a.title }}</a> <span class="meta">{{ a.date | date: "%Y-%m-%d" }}</span></li>{% endfor -%}
+  </ul>
+    {%- endif -%}
+  {%- endif %}
+</article>

@@ -1,0 +1,17 @@
+---
+layout: default
+title: Galleri
+permalink: /galleri/
+---
+<h1>Galleri</h1>
+{% assign albums = site.album | sort: "date" | reverse %}
+<div class="grid albums">
+  {%- for a in albums %}
+  <figure>
+    <a href="{{ a.url | relative_url }}">
+      {%- if a.bilder.size > 0 %}<img src="{{ a.bilder[0].thumb | relative_url }}" alt="" loading="lazy">{% endif -%}
+    </a>
+    <figcaption><a href="{{ a.url | relative_url }}">{{ a.title }}</a><br><span class="meta">{{ a.date | date: "%Y-%m-%d" }} · {{ a.bilder.size }} bilder</span></figcaption>
+  </figure>
+  {%- endfor %}
+</div>
