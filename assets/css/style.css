@@ -10,9 +10,17 @@ a { color: var(--blue); }
 img { max-width: 100%; height: auto; }
 
 .site-header { background: var(--blue); color: #fff; padding: 0.75rem 1.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
-.logo { color: #fff; font-weight: 700; font-size: 1.4rem; text-decoration: none; }
+.logo { position: relative; display: inline-block; color: #fff; font-weight: 700; font-size: 1.4rem; text-decoration: none; padding-right: 0; }
 .logo span { opacity: 0.7; }
-.logo-badge { display: inline-block; vertical-align: middle; margin-left: 0.5rem; padding: 0.15rem 0.55rem; border-radius: 4px; background: #f0c419; color: #1f2d3d; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.logo-badge {
+  position: absolute; right: -3.75rem; top: 50%;
+  transform: translateY(-55%) rotate(-12deg);
+  background: #ffd600; color: #000; border-radius: 3px;
+  font-size: 0.75rem; font-weight: 800; line-height: 1.1; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; white-space: nowrap;
+  outline: 2px dashed rgba(0, 0, 0, 0.55); outline-offset: -5px; padding: 0.35rem 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+.logo-badge b { display: block; font-size: 1.05rem; letter-spacing: 0.12em; }
 .main-nav { display: flex; flex-wrap: wrap; gap: 0.25rem; }
 .main-nav a { color: #fff; text-decoration: none; padding: 0.3rem 0.7rem; border-radius: 4px; }
 .main-nav a:hover, .main-nav a.active { background: rgba(255, 255, 255, 0.2); }

@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ site.description }}">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
   <header class="site-header">
-    <a class="logo" href="{{ '/' | relative_url }}">modellsegelflyg<span>.se</span> <small class="logo-badge">Arkiv 2005–2026</small></a>
+    <a class="logo" href="{{ '/' | relative_url }}">modellsegelflyg<span>.se</span> <small class="logo-badge"><b>Arkiv</b>2005–2026</small></a>
     <nav class="main-nav">
       {%- for item in site.data.navigation -%}
         {%- assign active = false -%}
